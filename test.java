@@ -1,27 +1,22 @@
 import org.junit.jupiter.api.Test;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
-public class SecurityConfigurationTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+
+class MimeUtilTest {
 
     @Test
-    public void testWebIgnoringConfigured() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        // Arrange
-        SecurityConfiguration securityConfig = new SecurityConfiguration();
-        WebSecurity webSecurity = mock(WebSecurity.class);
-        WebSecurity.IgnoredRequestConfigurer ignoredRequestConfigurer = mock(WebSecurity.IgnoredRequestConfigurer.class);
-
-        when(webSecurity.ignoring()).thenReturn(ignoredRequestConfigurer);
-
-        // Act
-        Method configureMethod = SecurityConfiguration.class
-		.getDeclaredMethod("configure", WebSecurity.class);
-        configureMethod.setAccessible(true);
-        configureMethod.invoke(securityConfig, webSecurity);
-
-        // Assert
-        verify(webSecurity).ignoring();
-        verify(ignoredRequestConfigurer).requestMatchers(any(RequestMatcher.class));
+    void getMimeTypeFromFileNameTest() {
+        try (MockedStatic<MimeUtil> mockedStatic = Mockito.mockStatic(MimeUtil.class)) {
+            // Define the behavior for the static method
+            mockedStatic.when(() -> MimeUtil.getMimeTypes(anyString()))
+                        .thenReturn(Collections.singletonList(new MimeType("application/pdf")));
+            // Call the method under test
+            String mimeType = MimeUtil.getMimeTypeFromFileName("test.pdf");
+            // Assert the result
+            assertEquals("application/pdf", mimeType);
+        }
     }
 }
