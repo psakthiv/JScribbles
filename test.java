@@ -61,4 +61,15 @@ public void testFetchDocumentDMSWithValidId() {
     assertEquals("Test name should match", "testName", result.get(Constants.SOURCEID_CODE));
     assertEquals("
 
+//... (previous mocking setup)
+
+FindIterable<Document> findIterableMock = mock(FindIterable.class);
+when(findIterableMock.first()).thenReturn(mockDocument); // Make sure this mockDocument is not null
+
+MongoCollection<Document> docCollectionMock = mock(MongoCollection.class);
+when(docCollectionMock.find(any())).thenReturn(findIterableMock); // Make sure this returns the mocked FindIterable
+
+when(mongoTemplate.getCollection("isearch_document")).thenReturn(docCollectionMock);
+
+//... (rest of the test)
 
