@@ -1,75 +1,32 @@
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+public class MockSearchResponse {
 
-import org.junit.Before;
-import org.junit.Test;
-import com.mongodb.client.Mongo
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoIterable;
-import org.bson.Document;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.data.mongodb.core.MongoTemplate;
+    public static SearchResponse createMockSearchResponse() {
+        SearchResponse mockResponse = new SearchResponse();
 
-public class MongoDBServiceTest {
-@Mock
-private MongoTemplate mongoTemplate;
+        // Assuming there is a constructor that allows setting these properties
+        // Or you could use the setters if they exist
+        mockResponse.setRequestId("mockRequestId");
+        mockResponse.setOnBehalfOf("mockOnBehalfOf");
+        mockResponse.setHasMoreMatches(true);
 
-@InjectMocks
-private MongoDBService mongoDBService;
+        List<Match> mockMatches = new ArrayList<>();
+        // Populate the list with mock Match objects
+        // Assuming Match has a constructor or setters to set properties
+        Match mockMatch = new Match();
+        mockMatch.setDocumentLocator("mockDocumentLocator");
+        mockMatch.setMetaData(new ArrayList<MetadataItem>());
+        // Add more properties to Match if needed
+        mockMatches.add(mockMatch);
 
-@Before
-public void setUp() {
-    MockitoAnnotations.initMocks(this);
-}
+        mockResponse.setMatches(mockMatches);
 
-@Test
-public void testFetchDocumentDMSWithValidId() {
-    // Arrange
-    String documentId = "validDocumentId";
-    String imageId = "validImageId";
-    Document mockDocument = new Document("document", new Document("metadata", 
-                                new Document("core", new Document("dms", new Document("name", "testName")))))
-                                .append("images", asList(new Document("imageId", imageId).append("format", "jpeg")));
-								
-    when(mongoTemplate.getCollection(anyString())).thenReturn(mock(MongoCollection.class));
-    MongoCollection<Document> collection = mongoTemplate.getCollection("iseearch_document");
-    when(collection.find(any())).thenReturn(mock(FindIterable.class));
-    FindIterable<Document> findIterable = collection.find();
-    when(findIterable.first()).thenReturn(mockDocument);
+        mockResponse.setErrorCode(0);
+        mockResponse.setErrorName("No Error");
+        mockResponse.setErrorMessage("Success");
 
-    // Act
-    Map<String, String> result = mongoDBService.fetchDocumentDMS(documentId, imageId);
+        return mockResponse;
+    }
 
-    // Assert
-    assertNotNull("Result should not be null", result);
-    assertEquals("Test name should match", "testName", result.get(Constants.SOURCEID_CODE));
-    assertEquals("
-	
-	    when(mongoTemplate.getCollection(anyString())).thenReturn(mock(MongoCollection.class));
-    MongoCollection<Document> collection = mongoTemplate.getCollection("iseearch_document");
-    when(collection.find(any())).thenReturn(mock(FindIterable.class));
-    FindIterable<Document> findIterable = collection.find();
-    when(findIterable.first()).thenReturn(mockDocument);
-
-    // Act
-    Map<String, String> result = mongoDBService.fetchDocumentDMS(documentId, imageId);
-
-    // Assert
-    assertNotNull("Result should not be null", result);
-    assertEquals("Test name should match", "testName", result.get(Constants.SOURCEID_CODE));
-    assertEquals("
-
-//... (previous mocking setup)
-
-FindIterable<Document> findIterableMock = mock(FindIterable.class);
-when(findIterableMock.first()).thenReturn(mockDocument); // Make sure this mockDocument is not null
-
-MongoCollection<Document> docCollectionMock = mock(MongoCollection.class);
-when(docCollectionMock.find(any())).thenReturn(findIterableMock); // Make sure this returns the mocked FindIterable
-
-when(mongoTemplate.getCollection("isearch_document")).thenReturn(docCollectionMock);
-
-//... (rest of the test)
-
+    public static void main(String[] args) {
+        SearchResponse mockResponse = createMockSearchResponse();
+        // You can now
