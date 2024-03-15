@@ -45,3 +45,36 @@ public class DealworksDocumentImageServiceImplTest {
         );
     }
 }
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public class DBTemplateConfigTest {
+
+    private DBTemplateConfig dbTemplateConfig;
+    private DataSource dataSourceMock;
+
+    @Before
+    public void setUp() {
+        dataSourceMock = mock(DataSource.class);
+        dbTemplateConfig = new DBTemplateConfig(dataSourceMock);
+    }
+
+    @Test
+    public void testJdbcTemplateBean() {
+        JdbcTemplate jdbcTemplate = dbTemplateConfig.jdbcTemplate();
+        assertNotNull(jdbcTemplate);
+        // Additional checks can be added here
+    }
+
+    @Test
+    public void testNamedParameterJdbcTemplateBean() {
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = dbTemplateConfig.namedParameterJdbcTemplate();
+        assertNotNull(namedParameterJdbcTemplate);
+        // Additional checks can be added here
+    }
+}
