@@ -1,32 +1,37 @@
-public class MockSearchResponse {
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.junit.Assert.assertNotNull;
 
-    public static SearchResponse createMockSearchResponse() {
-        SearchResponse mockResponse = new SearchResponse();
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.test.context.junit4.SpringRunner;
 
-        // Assuming there is a constructor that allows setting these properties
-        // Or you could use the setters if they exist
-        mockResponse.setRequestId("mockRequestId");
-        mockResponse.setOnBehalfOf("mockOnBehalfOf");
-        mockResponse.setHasMoreMatches(true);
+@RunWith(SpringRunner.class)
+public class DBSophiaConfigTest {
 
-        List<Match> mockMatches = new ArrayList<>();
-        // Populate the list with mock Match objects
-        // Assuming Match has a constructor or setters to set properties
-        Match mockMatch = new Match();
-        mockMatch.setDocumentLocator("mockDocumentLocator");
-        mockMatch.setMetaData(new ArrayList<MetadataItem>());
-        // Add more properties to Match if needed
-        mockMatches.add(mockMatch);
+    @Mock
+    private Environment env;
 
-        mockResponse.setMatches(mockMatches);
+    @InjectMocks
+    private DBSophiaConfig config;
 
-        mockResponse.setErrorCode(0);
-        mockResponse.setErrorName("No Error");
-        mockResponse.setErrorMessage("Success");
+    @Test
+    public void testDataSourceBean() {
+        // Mock the environment variables if needed
+        when(env.getProperty("spring.datasource.url")).thenReturn("jdbc:testUrl");
+        when(env.getProperty("spring.datasource.username")).thenReturn("testUser");
+        when(env.getProperty("spring.datasource.password")).thenReturn("testPass");
 
-        return mockResponse;
+        // Call the method under test
+        HikariDataSource dataSource = config.dataSource();
+
+        // Verify results
+        assertNotNull(dataSource);
+        assertEquals("jdbc:testUrl", dataSource.getJdbcUrl());
+        assertEquals("testUser", dataSource.getUsername());
+        assertEquals("testPass", dataSource.getPassword());
     }
-
-    public static void main(String[] args) {
-        SearchResponse mockResponse = createMockSearchResponse();
-        // You can now
+}
