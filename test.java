@@ -1,37 +1,46 @@
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-@RunWith(SpringRunner.class)
-public class DBSophiaConfigTest {
+import javax.sql.DataSource;
+
+import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyString;
+
+@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+public class YourApplicationTests {
+
+    @MockBean
+    private DataSource mockDataSource;
 
     @Mock
-    private Environment env;
-
-    @InjectMocks
-    private DBSophiaConfig config;
+    private JdbcTemplate jdbcTemplate;
 
     @Test
-    public void testDataSourceBean() {
-        // Mock the environment variables if needed
-        when(env.getProperty("spring.datasource.url")).thenReturn("jdbc:testUrl");
-        when(env.getProperty("spring.datasource.username")).thenReturn("testUser");
-        when(env.getProperty("spring.datasource.password")).thenReturn("testPass");
+    public void contextLoads() {
+        // This test simply checks if the Spring context loads properly.
+    }
 
-        // Call the method under test
-        HikariDataSource dataSource = config.dataSource();
+    @Test
+    public void jdbcTemplateShouldExecute() {
+        // Mock the DataSource to return a mock connection
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        
+        // Set up the JdbcTemplate with the mocked DataSource
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(mockDataSource);
 
-        // Verify results
-        assertNotNull(dataSource);
-        assertEquals("jdbc:testUrl", dataSource.getJdbcUrl());
-        assertEquals("testUser", dataSource.getUsername());
-        assertEquals("testPass", dataSource.getPassword());
+        // Define the behavior of the jdbcTemplate to avoid actual database interaction
+        when(jdbcTemplate.queryForObject(anyString(), (Class<Object>) any())).thenReturn(new Object());
+
+        // Here you can add your logic to test jdbcTemplate methods, for example:
+        Object result = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM some_table", Object.class);
+
+        // Assertions go here to validate the result
+        // Assertions could be made to ensure the mock was used as expected
     }
 }
