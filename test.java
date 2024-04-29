@@ -1,67 +1,60 @@
-To handle a generic JSON structure where the operator can be dynamic, such as "in", "and", "or", "not in", etc., you should use a map to represent the operators and their corresponding values. Here's how you can modify the Java class to handle this:
-
-```java
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-public class DocumentQuery {
-    private Map<String, Object> additionalProperties = new HashMap<>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+db.collection.aggregate([
+  {
+    $match: {
+      $and: [
+        { "document.metadata.core.dms.name": { $in: ["Captis"] } },
+        { "document.metadata.core.documentClassification": { $in: ["Public", "Internal"] } }
+      ]
     }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+  },
+  {
+    $lookup: {
+      from: "clientDoc",
+      localField: "SearchResults._id",
+      foreignField: "_id",
+      as: "clientDoc"
     }
-
-    public static class QueryOperator {
-        private List<String> query;
-        private String path;
-
-        public List<String> getQuery() {
-            return query;
-        }
-
-        public void setQuery(List<String> query) {
-            this.query = query;
-        }
-
-        public String getPath() {
-            return path;
-        }
-
-        public void setPath(String path) {
-            this.path = path;
-        }
+  },
+  {
+    $project: {
+      _id: 1,
+      metadata: 1,
+      "SearchResults._id": 1,
+      extendedMetadata: "$document.metadata.extended.xmetadataString",
+      clientDoc: 1
     }
-
-    // Main method for testing
-    public static void main(String[] args) throws Exception {
-        String json = "{\"in\":{\"query\":[\"Confidential\",\"Personal Information\",\"Public / Internal\"],\"path\":\"document.metadata.core.documentClassification\"}}";
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        DocumentQuery documentQuery = objectMapper.readValue(json, DocumentQuery.class);
-
-        // Example usage
-        documentQuery.getAdditionalProperties().forEach((key, value) -> {
-            QueryOperator operator = objectMapper.convertValue(value, QueryOperator.class);
-            System.out.println("Operator: " + key);
-            System.out.println("Path: " + operator.getPath());
-            operator.getQuery().forEach(System.out::println);
-        });
+  },
+  // Assuming this is a transformation that can be applied to each document.
+  {
+    $unwind: "$clientDoc"
+  },
+  {
+    $addFields: {
+      "clientDoc.projectedField": {
+        // Add your transformation logic here.
+      }
     }
-}
-```
-
-In this updated version, `DocumentQuery` has a map called `additionalProperties` which can store any additional JSON properties that are not explicitly defined in the class structure. The `@JsonAnySetter` allows you to handle any unknown properties, and `@JsonAnyGetter` provides access to those properties.
-
-The `main` method demonstrates how to deserialize a JSON string into the `DocumentQuery` class and iterate over the operators present in the JSON. For each operator, it converts the value part of the map entry into a `QueryOperator` class instance to access the query list and path.
-
-This generic approach allows your Java class to handle JSON with different operators, not just "in". You just need to handle the logic for different operators accordingly in your code after parsing the JSON.
+  },
+  // Reconstruct the SearchResults if necessary.
+  {
+    $group: {
+      _id: "$_id",
+      metadata: { $first: "$metadata" },
+      SearchResults: { $push: "$SearchResults" },
+      clientDoc: { $push: "$clientDoc" }
+    }
+  },
+  {
+    $project: {
+      _id: 1,
+      metadata: 1,
+      SearchResults: {
+        $slice: [ "$SearchResults", 0, 30 ] // Implementing the limit within the project stage
+      },
+      clientDoc: 1
+    }
+  },
+  {
+    $count: "totalCount"
+  }
+]);
