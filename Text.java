@@ -1,29 +1,11 @@
-### Org Mission:
-VOCAL (Voice of Carers Across Lothian) is an organisation committed to the wellbeing and support of carers throughout Midlothian and Edinburgh. It functions as an advocacy organisation, a provider of comprehensive carer support, and a social enterprise. Through its two carer hubs and various locality bases across the region, VOCAL delivers a wide range of both digital and in-person services.
+Problem:
+VOCAL aims to support carers by providing grants that allow them to take necessary breaks, thereby improving their overall wellbeing. However, the current grant application process is inefficient and burdensome. The existing system requires manual intervention, where VOCAL team members must download and manually input data from submitted forms into the case management system (CSM). This lack of integration between the online application form and the CSM results in delays, potential errors, and increased workload for staff. Additionally, the form itself has limitations regarding accessibility and API integration, making it difficult to meet the needs of all users effectively.
 
-These services encompass the creation of Adult Carer Support and Emergency Plans, and offering detailed guidance on carers' rights and entitlements. VOCAL also provides a robust program of events and activities designed to engage and support carers in their roles. Emotional support, counselling, and wellbeing services are core to their offerings, as are resources addressing welfare rights, financial matters, and legal issues.
+Process:
+The current process begins with carers filling out an online form to apply for grants. Once the form is submitted, a VOCAL team member must manually download the form and enter the data into the case management system. This manual step is time-consuming and prone to errors, contributing to inefficiencies in processing grant applications. Furthermore, the existing form lacks integration with the CSM API, which would otherwise streamline the process by automating data transfer and improving accuracy.
 
-In addition, VOCAL facilitates short breaks for carers, giving them much-needed respite, and provides support to employers and those working closely with carers. For families dealing with addiction, whether related to drugs or alcohol, VOCAL offers targeted family support services. Furthermore, the organisation operates Treasure Tree, a social enterprise aimed at enhancing the economic wellbeing of unpaid carers and their families, underscoring its commitment to improving the lives of carers in multiple dimensions.
+People:
+The people involved in this process include the carers who apply for the grants and the VOCAL staff responsible for processing these applications. Carers rely on these grants for essential respite, and any delays or issues in the application process directly impact their ability to receive timely support. On the other side, VOCAL staff are burdened with additional manual tasks that not only slow down the process but also divert their attention from other critical support activities.
 
-### What Are We Trying to Achieve?
-One of VOCAL's key initiatives is to provide grants that allow carers to take breaks, helping to improve their overall wellbeing. These grants, which do not need to be repaid, can be used in various ways to enhance self-care, reduce social isolation, or encourage hobbies and interests—anything that gives carers a needed respite.
-
-Currently, the process to apply for these grants involves filling out an online form that interacts with VOCAL’s case management system (CSM). However, the process is burdened with several manual steps: after a carer submits a form, a VOCAL team member must download and manually enter the data into the CSM, as there is no direct integration between the form and the system. Additionally, the current form has limitations in terms of accessibility and integration with the CSM API.
-
-### The Solution
-The proposed solution is to develop a new form that addresses these issues. This form will be designed to integrate seamlessly with VOCAL’s case management system, improving efficiency by eliminating manual data entry and enhancing accessibility for users.
-
-### Tech Used
-We are currently evaluating various WordPress plugins to create the new form with the necessary capabilities. Our team has analyzed multiple plugins, comparing them on factors such as integration potential, accessibility features, and ease of use. We are in discussions with our clients to finalize the most suitable option.
-
-### Long-Term Systemic Change
-The new, integrated form will lead to significant long-term improvements in VOCAL’s operations. By streamlining the grant application process, the organisation will be able to process applications more efficiently and reduce the administrative burden on staff. This, in turn, will allow VOCAL to support more carers more effectively, contributing to the overall mission of improving the wellbeing of carers in the community.
-
-### How Does It Make Them More Effective?
-This solution will make VOCAL more effective by automating manual processes, reducing the potential for human error, and enhancing the user experience for carers applying for grants. It will also free up staff time, allowing them to focus on more critical aspects of carer support and advocacy.
-
-### Learnings
-One of the key learnings from this project was the importance of scope finalization. Initially, we had extensive discussions with our clients in March and agreed upon a project scope. However, as the project progressed, we had to revise the scope due to differing expectations from both parties. This experience underscored the need for clear communication and thorough alignment on project goals before starting development.
-
----
-
+Platform:
+The current platform involves an online form and a separate case management system (CSM). The lack of integration between these two platforms is a significant pain point. The online form is outdated, with limitations in accessibility and API integration, which hampers its effectiveness. The case management system, while robust, requires manual data entry due to the absence of automation between the form and the system. This disjointed setup underscores the need for a more cohesive and integrated solution that can enhance efficiency, accuracy, and user experience for both carers and VOCAL staff.
