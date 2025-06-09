@@ -1,34 +1,65 @@
+import React from 'react';
 
-import React from "react";
-
-const JPMCHeader = () => {
+export default function SavingsDashboard() {
   return (
-    <header className="jpmc-header">
-      <div className="logo">
-        <span className="icon">🔷</span>
-        <span className="title">JPMC</span>
-      </div>
-      <nav className="nav-links">
-        <a href="#" className="nav-link active">Accounts</a>
-        <a href="#" className="nav-link">Alerts <span className="badge">1</span></a>
-        <a href="#" className="nav-link">Tools</a>
-        <a href="#" className="nav-link">More</a>
-      </nav>
-    </header>
+    <div className="min-h-screen bg-white font-sans">
+      {/* Header */}
+      <header className="bg-[#003366] text-white px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <div className="text-2xl font-bold">🔷 JPMC</div>
+        </div>
+        <nav className="space-x-6 text-sm">
+          <a href="#" className="border-b-2 border-white pb-1">Accounts</a>
+          <a href="#" className="relative">
+            Alerts <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full absolute -top-2 -right-4">1</span>
+          </a>
+          <a href="#">Tools</a>
+          <a href="#">...</a>
+        </nav>
+      </header>
+
+      {/* Content */}
+      <main className="p-6">
+        <h1 className="text-3xl font-semibold text-[#003366] mb-6">Set Savings Rules</h1>
+
+        {/* Streak meter */}
+        <div className="bg-gray-50 p-6 rounded-xl shadow-md text-center mb-6">
+          <div className="text-lg text-green-600 font-semibold">+2 DAYS</div>
+          <div className="text-4xl font-bold text-[#003366] mb-2">5-day streak!</div>
+          <a href="#" className="text-blue-600 underline text-sm">View progress &gt;</a>
+
+          {/* Simulated meter */}
+          <div className="mt-6">
+            <div className="w-full h-3 bg-gradient-to-r from-red-500 via-yellow-400 to-green-500 rounded-full relative">
+              <div className="absolute top-[-10px] right-[10%] text-sm">⚪</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Welcome Back Section */}
+        <div className="bg-blue-50 p-4 rounded-lg shadow-sm flex items-center space-x-4 mb-6">
+          <div className="text-4xl">🎉</div>
+          <div>
+            <div className="font-semibold">WELCOME BACK</div>
+            <div>You’ve stashed <span className="font-bold">$4.67+</span> more funds!<br />Keep it up!</div>
+          </div>
+        </div>
+
+        {/* Alert box */}
+        <div className="bg-white border border-blue-200 p-4 rounded-md flex justify-between items-center mb-6">
+          <div>🔔 You have <strong>1 unread alert</strong>.</div>
+          <a href="#" className="text-blue-600 font-medium">See details &gt;</a>
+        </div>
+
+        {/* Contributions section */}
+        <div className="mt-4">
+          <h2 className="text-xl font-semibold mb-2">Top bars that contribute to savings</h2>
+          <div className="grid grid-cols-2 gap-4 text-gray-700">
+            <div className="p-3 border rounded-lg">The Local Tavern</div>
+            <div className="p-3 border rounded-lg">City Grocers</div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
-};
-
-export default JPMCHeader;
-
-
-Problem:
-VOCAL aims to support carers by providing grants that allow them to take necessary breaks, thereby improving their overall wellbeing. However, the current grant application process is inefficient and burdensome. The existing system requires manual intervention, where VOCAL team members must download and manually input data from submitted forms into the case management system (CSM). This lack of integration between the online application form and the CSM results in delays, potential errors, and increased workload for staff. Additionally, the form itself has limitations regarding accessibility and API integration, making it difficult to meet the needs of all users effectively.
-
-Process:
-The current process begins with carers filling out an online form to apply for grants. Once the form is submitted, a VOCAL team member must manually download the form and enter the data into the case management system. This manual step is time-consuming and prone to errors, contributing to inefficiencies in processing grant applications. Furthermore, the existing form lacks integration with the CSM API, which would otherwise streamline the process by automating data transfer and improving accuracy.
-
-People:
-The people involved in this process include the carers who apply for the grants and the VOCAL staff responsible for processing these applications. Carers rely on these grants for essential respite, and any delays or issues in the application process directly impact their ability to receive timely support. On the other side, VOCAL staff are burdened with additional manual tasks that not only slow down the process but also divert their attention from other critical support activities.
-
-Platform:
-The current platform involves an online form and a separate case management system (CSM). The lack of integration between these two platforms is a significant pain point. The online form is outdated, with limitations in accessibility and API integration, which hampers its effectiveness. The case management system, while robust, requires manual data entry due to the absence of automation between the form and the system. This disjointed setup underscores the need for a more cohesive and integrated solution that can enhance efficiency, accuracy, and user experience for both carers and VOCAL staff.
+}
