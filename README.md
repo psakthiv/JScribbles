@@ -1,3 +1,29 @@
+
+import React from "react";
+
+const JPMCHeader = () => {
+  return (
+    <header className="jpmc-header">
+      <div className="logo">
+        <span className="icon">🔷</span>
+        <span className="title">JPMC</span>
+      </div>
+      <nav className="nav-links">
+        <a href="#" className="nav-link active">Accounts</a>
+        <a href="#" className="nav-link">Alerts <span className="badge">1</span></a>
+        <a href="#" className="nav-link">Tools</a>
+        <a href="#" className="nav-link">More</a>
+      </nav>
+    </header>
+  );
+};
+
+export default JPMCHeader;
+
+
+
+
+
 .jpmc-header {
   background-color: #003366;
   color: white;
