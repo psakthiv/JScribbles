@@ -1,3 +1,26 @@
+
+import React from "react";
+
+const JPMCHeader = () => {
+  return (
+    <header className="jpmc-header">
+      <div className="logo">
+        <span className="icon">🔷</span>
+        <span className="title">JPMC</span>
+      </div>
+      <nav className="nav-links">
+        <a href="#" className="nav-link active">Accounts</a>
+        <a href="#" className="nav-link">Alerts <span className="badge">1</span></a>
+        <a href="#" className="nav-link">Tools</a>
+        <a href="#" className="nav-link">More</a>
+      </nav>
+    </header>
+  );
+};
+
+export default JPMCHeader;
+
+
 Problem:
 VOCAL aims to support carers by providing grants that allow them to take necessary breaks, thereby improving their overall wellbeing. However, the current grant application process is inefficient and burdensome. The existing system requires manual intervention, where VOCAL team members must download and manually input data from submitted forms into the case management system (CSM). This lack of integration between the online application form and the CSM results in delays, potential errors, and increased workload for staff. Additionally, the form itself has limitations regarding accessibility and API integration, making it difficult to meet the needs of all users effectively.
 
