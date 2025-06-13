@@ -1,3 +1,26 @@
+Take the US, for instance. The personal savings rate as of this year is just 4.6%. That’s… not great and is well beneath the historical average of around 8.4%.
+
+And while teens and Gen Z talk a good game—87% of teens say saving is a priority—only around 42% actually have money set aside.
+
+Now here's the interesting part: a recent Ipsos report says about 83% of teens are saving money in some form. Sounds promising, right? But—more than half of them have less than $500 saved, and about 17% aren’t saving at all.
+
+Why is that? A big reason is impulse buying. Whether it’s a new sneaker drop, a viral product on Instagram, or a flash sale notification—today’s teens are growing up in a world of “buy now, think later.”
+
+Add to that the magic of one-click payments, BNPL apps, and instant gratification from online shopping—saving money just can’t compete with the thrill of spending.
+
+So even though the intention to save is real, it gets buried under constant temptation. This is where we, as a bank, can step in.
+
+
+
+
+
+
+
+
+
+
+
+
 Okay, so hear me out…
 
 Did you know that in countries like the US and UK, people really do want to save—but just can’t seem to get around to it?
