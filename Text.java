@@ -1,3 +1,16 @@
+
+https://www.thestreet.com/retirement-daily/nextgen-money/gen-zers-say-saving-money-is-a-priority-but-less-than-50-have-any-savings?utm_source=chatgpt.com
+
+
+
+
+
+
+
+
+
+
+
 Take the US, for instance. The personal savings rate as of this year is just 4.6%. That’s… not great and is well beneath the historical average of around 8.4%.
 
 And while teens and Gen Z talk a good game—87% of teens say saving is a priority—only around 42% actually have money set aside.
