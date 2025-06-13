@@ -1,3 +1,81 @@
+Okay, so hear me out…
+
+Did you know that in countries like the US and UK, people really do want to save—but just can’t seem to get around to it?
+
+Take the US, for instance. The personal savings rate as of this year is just 4.6%. That’s… not great and is well beneath the historical average of ~8.4 %. And while teens and Gen Z talk a good game—87% of teens say saving is a priority—only around 42% actually have money set aside.
+
+Now here's the interesting part: a recent Ipsos report says about 83% of teens are saving money in some form. Sounds promising, right? But—more than half of them have less than $500 saved, and about 17% aren’t saving at all.
+
+Why is that? A big reason is impulse buying. Whether it’s a new sneaker drop, a viral product on Instagram, or a flash sale notification—today’s teens are growing up in a world of “buy now, think later.”
+
+Add to that the magic of one-click payments, BNPL apps, and instant gratification from online shopping—saving money just can’t compete with the thrill of spending.
+
+So even though the intention to save is real, it gets buried under constant temptation. This is where we, as a bank, can step in.
+
+So here’s the paradox: there’s interest in saving, but also a lot of inertia. It’s not that people don’t care—it’s just that traditional saving feels boring, slow, or like something future-you will figure out later.
+
+[Problem – Why It Matters]
+
+That’s a problem. Because without consistent saving habits, we’re looking at a financially anxious generation—one paycheck, one emergency away from chaos.
+
+And for banks, especially one with the scale and trust of Chase, this is a wake-up call and an opportunity.
+
+[Solution – Enter Gamification]
+
+What if saving money was less like eating your vegetables and more like… playing a game or watching a reel?
+
+Gamified savings is how we take that intention—and turn it into action.
+
+At Chase, we're already building toward this:
+
+Challenges that reward users for hitting their savings goals.
+
+Auto-save rules that make money move quietly and consistently in the background.
+
+And soon—imagine a world where users unlock badges, hit streaks, or even win prizes just for saving smart.
+
+Think Duolingo, but instead of learning Spanish, you’re learning to stack your savings. ¡Muy bien!
+
+[What Others Are Doing – Industry Buzz]
+
+We’re not the only ones onto this. Apps like Yotta and PrizePool have turned savings into mini-lotteries. GoHenry teaches kids to save with quests and rewards. Even nonprofits like SaverLife are using gamification to help low-income families save for the first time.
+
+So the playbook exists. But Chase can own this space—by blending smart design, behavioral science, and financial literacy.
+
+[The Ask – What Chase Can Do Next]
+
+So what can we do?
+
+Build a youth-first savings experience with levels, goals, and social sharing.
+
+Make winning money as exciting as spending it—prize-linked savings, anyone?
+
+Celebrate good habits like streaks and milestones with little wins and nudges.
+
+Make financial education snackable—think memes with money tips.
+
+[Closing – The Vision]
+
+Because at the end of the day, people don’t need another savings account.
+They need an experience that makes saving irresistible.
+
+Let’s give our customers that feeling of winning—even when they’re not spending.
+
+Let’s gamify savings—and let’s help people Chase their goals, one streak at a time.
+
+Thank you!
+
+
+
+
+
+
+
+
+
+
+
+
 import React from 'react';
 import { ShieldCheck, Bell, Settings } from 'lucide-react';
 
