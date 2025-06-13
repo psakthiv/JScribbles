@@ -1,3 +1,5 @@
+https://www.gohenry.com/us/blog/financial-education/common-financial-problems-for-teens-how-to-resolve-them?utm_source=chatgpt.com
+
 
 https://www.thestreet.com/retirement-daily/nextgen-money/gen-zers-say-saving-money-is-a-priority-but-less-than-50-have-any-savings?utm_source=chatgpt.com
 
