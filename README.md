@@ -10,18 +10,35 @@ GET asr-associations-uat/_search
             "path": "roles",
             "query": {
               "bool": {
-                "must": [
-                  { "term": { "roles.bleid": "0802" } },
-                  { "term": { "roles.account.productCode": "0000" } },
-                  { "term": { "roles.account.accountNumber": "0000000000000005161614158" } }
-                ]
+                "should": [
+                  {
+                    "bool": {
+                      "must": [
+                        { "term": { "roles.bleId": "0802" } },
+                        { "term": { "roles.businessProductId": "31500" } },
+                        { "term": { "roles.account.accountNumber": "00000000000052019009020" } }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "must": [
+                        { "term": { "roles.bleId": "0810" } },
+                        { "term": { "roles.businessProductId": "0000" } },
+                        { "term": { "roles.account.accountNumber": "0000000000000005161614158" } }
+                      ]
+                    }
+                  }
+                ],
+                "minimum_should_match": 1
               }
             },
             "inner_hits": {
               "name": "matched_roles",
               "_source": [
-                "roles.bleid",
+                "roles.bleId",
                 "roles.account.productCode",
+                "roles.businessProductId",
                 "roles.account.accountNumber"
               ]
             }
