@@ -10,17 +10,11 @@ GET asr-associations-uat/_search
             "path": "roles",
             "query": {
               "bool": {
-                "should": [
-                  {
-                    "bool": {
-                      "must": [
-                        { "term": { "roles.bleid": "0802" } },
-                        { "term": { "roles.account.productCode": 31500 } }
-                      ]
-                    }
-                  }
-                ],
-                "minimum_should_match": 1
+                "must": [
+                  { "term": { "roles.bleid": "0802" } },
+                  { "term": { "roles.account.productCode": "0000" } },
+                  { "term": { "roles.account.accountNumber": "0000000000000005161614158" } }
+                ]
               }
             },
             "inner_hits": {
