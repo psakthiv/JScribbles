@@ -14,22 +14,11 @@ GET asr-associations-uat/_search
                   {
                     "bool": {
                       "must": [
-                        { "term":  { "roles.bleid": "0802" }},                 // legal entity
-                        { "term":  { "roles.account.productCode": 31500 }}     // product
-                        // { "term":  { "roles.account.accountNumber": "0000000000000005161614158" }} // <— include here iff acct# is part of the combo
+                        { "term": { "roles.bleid": "0802" } },
+                        { "term": { "roles.account.productCode": 31500 } }
                       ]
                     }
                   }
-                  /* add more combos as needed:
-                  ,{
-                    "bool": {
-                      "must": [
-                        { "term": { "roles.bleid": "0803" }},
-                        { "term": { "roles.account.productCode": 25 }}
-                      ]
-                    }
-                  }
-                  */
                 ],
                 "minimum_should_match": 1
               }
@@ -45,15 +34,6 @@ GET asr-associations-uat/_search
           }
         }
       ]
-      /* If accountNumber is just an optional prefilter across all roles (not part of the combo),
-         move it OUTSIDE the nested and keep it as a separate filter like this:
-      , "filter": [
-          { "nested": {
-              "path": "roles",
-              "query": { "term": { "roles.account.accountNumber": "0000000000000005161614158" } }
-          }}
-        ]
-      */
     }
   },
   "aggs": {
