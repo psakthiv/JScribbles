@@ -1,15 +1,72 @@
-Hashim has consistently proven himself to be a true all-rounder this year. Whether it’s coding, coordination, or scrumming, he excels in every area with remarkable precision and ownership. He represents the iSearch team exceptionally well across all forums and is the go-to person for complex initiatives that require collaboration across multiple teams.
+ import re
+import unicodedata
 
-His work on the Doc Viewer Node.js upgrade was particularly impressive — dismantling and rebuilding a complex system is no easy task, yet he made it look effortless. His meticulous planning and attention to detail during releases are on par with a NASA-level launch.
+# You can add/remove words from this set as you like
+STOPWORDS = {
+    "yes", "was", "am", "is", "are",
+    "the", "a", "an",
+    "this", "that", "these", "those",
+    "and", "or", "but",
+    "to", "for", "on", "in", "with", "at", "by", "from",
+    "it", "its",
+    "have", "has", "had",
+    "be", "been", "being",
+    "do", "does", "did",
+    "will", "would", "can", "could",
+    "shall", "should", "may", "might",
+    "you", "i", "we", "they", "he", "she", "them", "him", "her", "me", "my",
+    "our", "your", "their"
+}
 
-The GSM project is yet another feather in his cap, showcasing his ability to handle critical and high-impact deliverables with ease.
-Overall, Hashim continues to set a high bar through his commitment, technical expertise, and proactive approach. It’s been a pleasure collaborating with him.
+def remove_stopwords(text: str) -> str:
+    words = text.split()
+    filtered = []
+    for w in words:
+        # strip simple punctuation around the word for matching
+        core = w.strip(".,;:/-()[]{}\"'")
+        if core.lower() not in STOPWORDS:
+            filtered.append(w)
+    return " ".join(filtered)
 
+def clean_ocr_text_for_embeddings(text: str) -> str:
+    """
+    Clean OCR text while keeping names, labels, dates, and numbers.
+    Also removes common filler words like 'yes', 'was', 'am', etc.
+    """
 
-Kuldeep has truly been a blessing to the team. He consistently demonstrates exceptional technical acumen, innovation, and commitment — no matter how complex the challenge, he delivers with 100% accuracy and thoughtfulness.
+    # 1. Normalize unicode (fix odd characters)
+    text = unicodedata.normalize("NFKC", text)
 
-His work on Hermes Reporting was a standout achievement — delivering such a complex implementation within a tight timeline is a testament to his problem-solving ability and efficiency. The Aether-Box solution he designed and implemented was extremely well thought through, showcasing his depth of understanding and technical excellence.
+    # 2. Work line-by-line to drop exact duplicate lines (repeated headings)
+    lines = text.splitlines()
+    seen = set()
+    unique_lines = []
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped not in seen:
+            seen.add(stripped)
+            unique_lines.append(stripped)
 
-Kuldeep’s versatility across multiple technologies is remarkable. Despite being new to Python, he quickly grasped its core strengths and delivered a solution that perfectly leveraged the language’s capabilities. His work in Concordia, especially the speed and quality of delivery, was equally impressive.
+    text = " ".join(unique_lines)
 
-Beyond his technical expertise, Kuldeep stands out as a supportive teammate and an excellent mentor, always willing to guide and help others. It’s been an absolute pleasure working with him.
+    # 3. Fix hyphen + newline breaks like "Natio-\nnal" → "National"
+    text = re.sub(r"-\s+", "", text)
+
+    # 4. Collapse whitespace
+    text = re.sub(r"\s+", " ", text)
+
+    # 5. Remove repeated punctuation (//// → /, --- → -)
+    text = re.sub(r"([\/\-\:\;\,\.\_])\1+", r"\1", text)
+
+    # 6. Remove random non-alphanumeric garbage, but keep / - . , : ;
+    text = re.sub(r"[^\w\s\/\-\.,:;]", "", text)
+
+    # 7. Collapse spaces again
+    text = re.sub(r"\s+", " ", text).strip()
+
+    # 8. Remove filler words like yes/was/am/etc.
+    text = remove_stopwords(text)
+
+    return text
