@@ -1,3 +1,13 @@
+I would like to express my sincere gratitude for the trust you have consistently placed in me. Over the past cycle, you have given me several opportunities—across ASR, Seer, Mandate View, Intrinsic Taxonomy, and more—that have significantly expanded my exposure and helped me grow both technically and as a problem solver.
+
+One of the things I admire most about your leadership is your clarity of vision. You always see the bigger picture long before the rest of us get there. Initiatives like Mandate View and Content Search are strong examples of how your forward-looking thinking shapes the direction of our team and ensures we stay ahead of what the business needs. Your ability to articulate where we need to go—and more importantly, why—gives the team confidence and purpose.
+
+At the same time, you give us the space to explore our own approaches. While you clearly outline the end goal and the path to get started, you allow us the freedom to try, iterate, and innovate. This balance of guidance and autonomy not only empowers us but also helps us design solutions that are scalable and sustainable in the long term.
+
+I genuinely appreciate how intentional you are about identifying potential within the team. The way you encourage us to think independently, take ownership, and make architectural decisions is shaping the next line of leaders. This level of trust and mentorship has made a meaningful impact on my growth, and I am grateful for it.
+ 
+ 
+ 
  import re
 import unicodedata
 
