@@ -1,40 +1,27 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function TaxonomySearchBar() {
   const [searchText, setSearchText] = useState("");
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     console.log("Searching:", searchText);
+
+    // Navigate to tree page
+    navigate("/taxonomy");
   };
 
   const handleCreate = () => {
-    console.log("Create taxonomy");
+    navigate("/taxonomy"); // or different route later
   };
-
-  // Press "/" to focus search
-  useEffect(() => {
-    const handleShortcut = (event: KeyboardEvent) => {
-      if (event.key === "/" && document.activeElement !== inputRef.current) {
-        event.preventDefault();
-        inputRef.current?.focus();
-      }
-    };
-
-    window.addEventListener("keydown", handleShortcut);
-
-    return () => {
-      window.removeEventListener("keydown", handleShortcut);
-    };
-  }, []);
 
   return (
     <div style={styles.container}>
       <div style={styles.wrapper}>
         <input
-          ref={inputRef}
           type="text"
-          placeholder="Search taxonomy...  Press / to focus"
+          placeholder="Search taxonomy..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           onKeyDown={(e) => {
@@ -43,20 +30,12 @@ export default function TaxonomySearchBar() {
           style={styles.input}
         />
 
-        <button
-          onClick={handleSearch}
-          style={styles.iconButton}
-          title="Search taxonomy"
-        >
+        <button onClick={handleSearch} style={styles.iconButton}>
           🔍
         </button>
       </div>
 
-      <button
-        onClick={handleCreate}
-        style={styles.plusButton}
-        title="Create taxonomy"
-      >
+      <button onClick={handleCreate} style={styles.plusButton}>
         +
       </button>
     </div>
@@ -68,8 +47,9 @@ const styles: Record<string, React.CSSProperties> = {
     display: "flex",
     alignItems: "center",
     gap: "12px",
+    justifyContent: "center",
+    height: "100vh",
   },
-
   wrapper: {
     width: "520px",
     height: "48px",
@@ -81,7 +61,6 @@ const styles: Record<string, React.CSSProperties> = {
     padding: "0 10px 0 18px",
     boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
   },
-
   input: {
     flex: 1,
     border: "none",
@@ -89,14 +68,12 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: "15px",
     background: "transparent",
   },
-
   iconButton: {
     border: "none",
     background: "transparent",
     fontSize: "18px",
     cursor: "pointer",
   },
-
   plusButton: {
     width: "40px",
     height: "40px",
@@ -106,6 +83,5 @@ const styles: Record<string, React.CSSProperties> = {
     color: "#ffffff",
     fontSize: "22px",
     cursor: "pointer",
-    transition: "transform 0.15s ease, box-shadow 0.15s ease",
   },
 };
