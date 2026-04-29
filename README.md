@@ -1,4 +1,4 @@
-import { useState } from "react";
+    import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function TaxonomySearchBar() {
@@ -8,48 +8,75 @@ export default function TaxonomySearchBar() {
   const handleSearch = () => {
     console.log("Searching:", searchText);
 
-    // Navigate to tree page
-    navigate("/taxonomy");
+    // Navigate to tree page with query
+    navigate("/taxonomy?query=" + encodeURIComponent(searchText));
   };
 
   const handleCreate = () => {
-    navigate("/taxonomy"); // or different route later
+    navigate("/taxonomy"); // later you can change to /create
   };
 
   return (
     <div style={styles.container}>
-      <div style={styles.wrapper}>
-        <input
-          type="text"
-          placeholder="Search taxonomy..."
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleSearch();
-          }}
-          style={styles.input}
-        />
+      <div style={styles.centerArea}>
+        <div style={styles.searchRow}>
+          {/* Search box */}
+          <div style={styles.wrapper}>
+            <input
+              type="text"
+              placeholder="Search taxonomy..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+              style={styles.input}
+            />
 
-        <button onClick={handleSearch} style={styles.iconButton}>
-          🔍
-        </button>
+            <button
+              onClick={handleSearch}
+              style={styles.iconButton}
+              title="Search"
+            >
+              🔍
+            </button>
+          </div>
+
+          {/* + button OUTSIDE */}
+          <button
+            onClick={handleCreate}
+            style={styles.plusButton}
+            title="Create taxonomy"
+          >
+            +
+          </button>
+        </div>
       </div>
-
-      <button onClick={handleCreate} style={styles.plusButton}>
-        +
-      </button>
     </div>
   );
 }
 
 const styles: Record<string, React.CSSProperties> = {
   container: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    background: "#fafafa",
+  },
+
+  centerArea: {
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  searchRow: {
     display: "flex",
     alignItems: "center",
     gap: "12px",
-    justifyContent: "center",
-    height: "100vh",
   },
+
   wrapper: {
     width: "520px",
     height: "48px",
@@ -59,8 +86,9 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: "999px",
     background: "#ffffff",
     padding: "0 10px 0 18px",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
   },
+
   input: {
     flex: 1,
     border: "none",
@@ -68,15 +96,17 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: "15px",
     background: "transparent",
   },
+
   iconButton: {
     border: "none",
     background: "transparent",
     fontSize: "18px",
     cursor: "pointer",
   },
+
   plusButton: {
-    width: "40px",
-    height: "40px",
+    width: "42px",
+    height: "42px",
     borderRadius: "50%",
     border: "none",
     background: "#111827",
