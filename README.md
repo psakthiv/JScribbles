@@ -1,117 +1,65 @@
-    import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FaUserCircle, FaBell } from "react-icons/fa";
 
-export default function TaxonomySearchBar() {
-  const [searchText, setSearchText] = useState("");
-  const navigate = useNavigate();
-
-  const handleSearch = () => {
-    console.log("Searching:", searchText);
-
-    // Navigate to tree page with query
-    navigate("/taxonomy?query=" + encodeURIComponent(searchText));
-  };
-
-  const handleCreate = () => {
-    navigate("/taxonomy"); // later you can change to /create
-  };
-
+export default function Header() {
   return (
-    <div style={styles.container}>
-      <div style={styles.centerArea}>
-        <div style={styles.searchRow}>
-          {/* Search box */}
-          <div style={styles.wrapper}>
-            <input
-              type="text"
-              placeholder="Search taxonomy..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleSearch();
-              }}
-              style={styles.input}
-            />
-
-            <button
-              onClick={handleSearch}
-              style={styles.iconButton}
-              title="Search"
-            >
-              🔍
-            </button>
-          </div>
-
-          {/* + button OUTSIDE */}
-          <button
-            onClick={handleCreate}
-            style={styles.plusButton}
-            title="Create taxonomy"
-          >
-            +
-          </button>
-        </div>
+    <header style={styles.header}>
+      {/* Left */}
+      <div style={styles.left}>
+        <span style={styles.logo}>J.P.Morgan</span>
+        <span style={styles.separator}>|</span>
       </div>
-    </div>
+
+      {/* Center */}
+      <div style={styles.center}>
+        Taxonomy
+      </div>
+
+      {/* Right */}
+      <div style={styles.right}>
+        <FaUserCircle size={18} />
+        <span>Punitha Sakthivel</span>
+        <FaBell size={16} />
+      </div>
+    </header>
   );
 }
 
 const styles: Record<string, React.CSSProperties> = {
-  container: {
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    background: "#fafafa",
-  },
-
-  centerArea: {
-    flex: 1,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  searchRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-  },
-
-  wrapper: {
-    width: "520px",
-    height: "48px",
-    display: "flex",
-    alignItems: "center",
-    border: "1px solid #d1d5db",
-    borderRadius: "999px",
-    background: "#ffffff",
-    padding: "0 10px 0 18px",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-  },
-
-  input: {
-    flex: 1,
-    border: "none",
-    outline: "none",
-    fontSize: "15px",
-    background: "transparent",
-  },
-
-  iconButton: {
-    border: "none",
-    background: "transparent",
-    fontSize: "18px",
-    cursor: "pointer",
-  },
-
-  plusButton: {
-    width: "42px",
-    height: "42px",
-    borderRadius: "50%",
-    border: "none",
-    background: "#111827",
+  header: {
+    height: "56px",
+    background: "#000000",
     color: "#ffffff",
-    fontSize: "22px",
-    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "0 20px",
+    fontFamily: "Arial, sans-serif",
+  },
+
+  left: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    fontWeight: 600,
+  },
+
+  center: {
+    fontSize: "18px",
+    fontWeight: 600,
+  },
+
+  right: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    fontSize: "14px",
+  },
+
+  logo: {
+    fontWeight: 700,
+  },
+
+  separator: {
+    opacity: 0.6,
   },
 };
