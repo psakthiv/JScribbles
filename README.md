@@ -1,4 +1,28 @@
-import { useState } from "react";
+"What if I told you that you don't need a vector database to build an AI-powered search experience?
+
+Today, when we talk about intelligent search, we immediately think of embeddings, vectorization, semantic search, and complex AI infrastructure.
+
+But what about the enterprise systems that already exist? Systems holding millions of confidential documents, running on traditional databases, where migrating to a vector-enabled platform is neither practical nor necessary?
+
+That's exactly the problem we're solving.
+
+We've built a conversational search layer that sits on top of existing systems of record.
+
+A user simply types, 'Fetch me documents one, two, and three.'
+
+Our AI interprets the user's intent. Our application translates that intent into a native database query, retrieves the documents through existing authorised APIs, and displays the results.
+
+The important distinction? The AI doesn't need to see the documents. It only interprets the user's request.
+
+No vector database. No embeddings. No unnecessary data migration.
+
+We're not replacing enterprise search infrastructure. We're making it conversational.
+
+Because intelligent search shouldn't require reinventing your database."
+
+
+
+{ useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function TaxonomySearchPage() {
